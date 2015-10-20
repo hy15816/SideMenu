@@ -95,6 +95,7 @@
 		136ACC311BCB54BB00DFF043 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		136ACC331BCB7B9E00DFF043 /* FeedBackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackVC.h; sourceTree = "<group>"; };
 		136ACC341BCB7B9E00DFF043 /* FeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackVC.m; sourceTree = "<group>"; };
+		137549C71BD62A7100A11442 /* SideMenuPchFile.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideMenuPchFile.pch; sourceTree = "<group>"; };
 		137B04521BC8A1E2007A9756 /* SideMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		137B04561BC8A1E2007A9756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		137B04571BC8A1E2007A9756 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		13DEC8C91BCF9314009DA97C /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideView.h; sourceTree = "<group>"; };
 		13DEC8CA1BCF9314009DA97C /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
 		13DEC8CD1BCF9483009DA97C /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		13DEC8CE1BCF9483009DA97C /* SideMenu-Pch.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SideMenu-Pch.pch"; sourceTree = "<group>"; };
 		13DEC8D01BCF95EE009DA97C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		13DEC8D11BCF95EE009DA97C /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		13DEC8D21BCF95EE009DA97C /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -293,6 +293,7 @@
 			children = (
 				137B04561BC8A1E2007A9756 /* Info.plist */,
 				137B04571BC8A1E2007A9756 /* main.m */,
+				137549C71BD62A7100A11442 /* SideMenuPchFile.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -528,7 +529,6 @@
 			isa = PBXGroup;
 			children = (
 				13DEC8CD1BCF9483009DA97C /* Common.h */,
-				13DEC8CE1BCF9483009DA97C /* SideMenu-Pch.pch */,
 				13DEC8C71BCF9314009DA97C /* GlobalTool.h */,
 				13DEC8C81BCF9314009DA97C /* GlobalTool.m */,
 				13DEC8C91BCF9314009DA97C /* GuideView.h */,
@@ -852,6 +852,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SideMenu/SideMenuPchFile.pch";
 				INFOPLIST_FILE = SideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -868,6 +870,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SideMenu/SideMenuPchFile.pch";
 				INFOPLIST_FILE = SideMenu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -887,6 +891,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SideMenu/SideMenuPchFile.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -909,6 +914,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SideMenu/SideMenuPchFile.pch";
 				INFOPLIST_FILE = SideMenuTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
