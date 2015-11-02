@@ -40,14 +40,14 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     NSInteger count = 120-(unsigned long)self.fTextView.text.length;
-    self.fLabel.text = [NSString stringWithFormat:@"%lu/%d",count>=0?count:0,kStringCount];
+    self.fLabel.text = [NSString stringWithFormat:@"%lu/%d",(long)(count>=0?count:0),kStringCount];
     [self.fTextView becomeFirstResponder];
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
     NSInteger count = kStringCount - (unsigned long)self.fTextView.text.length-text.length;
-    self.fLabel.text = [NSString stringWithFormat:@"%lu/%d",count>=0?count:0,kStringCount];
+    self.fLabel.text = [NSString stringWithFormat:@"%lu/%d",(long)(count>=0?count:0),kStringCount];
     
     if (self.fTextView.text.length > kStringCount) {
         self.fTextView.text = [self.fTextView.text substringToIndex:kStringCount-1];

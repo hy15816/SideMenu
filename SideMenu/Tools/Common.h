@@ -40,3 +40,19 @@
 #define kTAG_USER_ICON  20  //头像
 #define kTAG_USER_NAME  21  //用户名
 #define kTAG_USER_SIGN  22  //签名
+
+
+#define kShowRemoteNotification @"kShowRemoteNotification"  //推送通知
+
+
+
+
+
+
+
+
+
+
+
+
+

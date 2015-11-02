@@ -320,7 +320,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="我的二维码" id="rIy-Ss-ZRP"/>
+                    <navigationItem key="navigationItem" title="我的二维码" id="rIy-Ss-ZRP">
+                        <barButtonItem key="rightBarButtonItem" title="生成" id="5Th-ox-rPy">
+                            <connections>
+                                <action selector="createMyQRCode:" destination="4fT-Kx-3th" id="znA-2s-lv0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="qrImage" destination="3cn-6w-iRl" id="Crg-Gs-Ta6"/>
                         <outlet property="smallIcon" destination="YKx-n6-pDR" id="yBy-4G-usp"/>
@@ -557,12 +563,12 @@
                                                     <exclude reference="iKa-Kg-7Vn"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="QUb-mB-ohS"/>
+                                                    <exclude reference="Skd-z7-9MI"/>
+                                                    <exclude reference="d8V-aB-6hi"/>
                                                     <exclude reference="2nF-HD-DBK"/>
                                                     <exclude reference="7YU-WO-cvV"/>
                                                     <exclude reference="ybi-Cb-1aP"/>
-                                                    <exclude reference="Skd-z7-9MI"/>
-                                                    <exclude reference="d8V-aB-6hi"/>
-                                                    <exclude reference="QUb-mB-ohS"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -571,12 +577,12 @@
                                                     <include reference="iKa-Kg-7Vn"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="QUb-mB-ohS"/>
+                                                    <include reference="Skd-z7-9MI"/>
+                                                    <include reference="d8V-aB-6hi"/>
                                                     <include reference="2nF-HD-DBK"/>
                                                     <include reference="7YU-WO-cvV"/>
                                                     <include reference="ybi-Cb-1aP"/>
-                                                    <include reference="Skd-z7-9MI"/>
-                                                    <include reference="d8V-aB-6hi"/>
-                                                    <include reference="QUb-mB-ohS"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -676,12 +682,12 @@
                                                     <exclude reference="FNR-V2-78o"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="n2f-ah-gL7"/>
-                                                    <exclude reference="UHl-s3-Cpq"/>
-                                                    <exclude reference="Tc1-SC-gj3"/>
-                                                    <exclude reference="ond-5j-Uf8"/>
-                                                    <exclude reference="i2h-uT-vNE"/>
                                                     <exclude reference="ghq-7x-H7a"/>
+                                                    <exclude reference="i2h-uT-vNE"/>
+                                                    <exclude reference="ond-5j-Uf8"/>
+                                                    <exclude reference="Tc1-SC-gj3"/>
+                                                    <exclude reference="UHl-s3-Cpq"/>
+                                                    <exclude reference="n2f-ah-gL7"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -690,12 +696,12 @@
                                                     <include reference="FNR-V2-78o"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="n2f-ah-gL7"/>
-                                                    <include reference="UHl-s3-Cpq"/>
-                                                    <include reference="Tc1-SC-gj3"/>
-                                                    <include reference="ond-5j-Uf8"/>
-                                                    <include reference="i2h-uT-vNE"/>
                                                     <include reference="ghq-7x-H7a"/>
+                                                    <include reference="i2h-uT-vNE"/>
+                                                    <include reference="ond-5j-Uf8"/>
+                                                    <include reference="Tc1-SC-gj3"/>
+                                                    <include reference="UHl-s3-Cpq"/>
+                                                    <include reference="n2f-ah-gL7"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -733,11 +739,11 @@
                                                     <exclude reference="v34-mM-zlm"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="Atg-Kl-9MC"/>
                                                     <exclude reference="Dab-Yt-KxX"/>
                                                     <exclude reference="IWC-gp-7Dz"/>
-                                                    <exclude reference="Atg-Kl-9MC"/>
-                                                    <exclude reference="HWw-9C-7oa"/>
                                                     <exclude reference="6ST-Kj-Jfb"/>
+                                                    <exclude reference="HWw-9C-7oa"/>
                                                     <exclude reference="gCs-7p-zxQ"/>
                                                 </mask>
                                             </variation>
@@ -747,11 +753,11 @@
                                                     <include reference="v34-mM-zlm"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="Atg-Kl-9MC"/>
                                                     <include reference="Dab-Yt-KxX"/>
                                                     <include reference="IWC-gp-7Dz"/>
-                                                    <include reference="Atg-Kl-9MC"/>
-                                                    <include reference="HWw-9C-7oa"/>
                                                     <include reference="6ST-Kj-Jfb"/>
+                                                    <include reference="HWw-9C-7oa"/>
                                                     <include reference="gCs-7p-zxQ"/>
                                                 </mask>
                                             </variation>

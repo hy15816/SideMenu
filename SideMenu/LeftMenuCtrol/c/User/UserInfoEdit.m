@@ -68,14 +68,14 @@
     if (indexPath.section == 0 ) {
         if (indexPath.row == 3) {//选择性别
             //
-            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"男" otherButtonTitles:@"女", nil];
+            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
             action.tag = kTAG_ACTION_SEX;
             [action showInView:self.view];
         }
         
         if (indexPath.row == 4) {//选择生日(时间选择器)
             
-            alertCtrol = [UIAlertController alertControllerWithTitle:nil message:@"\n\n\n\n\n\n\n\n\n" preferredStyle:UIAlertControllerStyleActionSheet];
+            alertCtrol = [UIAlertController alertControllerWithTitle:nil message:@"\n\n\n\n\n\n\n\n\n\n" preferredStyle:UIAlertControllerStyleActionSheet];
             
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 //点击确定按钮的事件处理

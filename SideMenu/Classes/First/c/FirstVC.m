@@ -15,6 +15,7 @@
 #import "MusicListCell.h"
 #import "MusicRecord.h"
 #import "GuideView.h"
+#define bCarLoginURL @"http://112.74.128.144:8189/AnerfaBackstage/login/login.do"//登陆
 
 @interface FirstVC ()<UITableViewDataSource,UITableViewDelegate,PopViewDelegate>
 
@@ -50,7 +51,14 @@
     //右上角item
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightsBtnClick:)];
     
+    
     [self initSubViews];
+    /*
+    NSDictionary *d = @{@"key":@"18565667965",@"password":@"3333"};
+    [GlobalTool getJSONWithUrl:bCarLoginURL parameters:d success:^(id accept){
+        NSLog(@"accept:%@",accept);
+    } fail:^(NSError *error){}];
+    */
     
 }
 
@@ -137,7 +145,7 @@
     [self.navigationController pushViewController:ctrol animated:YES];
 }
 
-#pragma mark - UISegmentedControl
+#pragma mark - tap
 -(void)tapShadowView:(UITapGestureRecognizer *)tap{
     if (tap.state == UIGestureRecognizerStateEnded) {
         [self dismissRightView];

@@ -33,6 +33,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    //接收显示通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRemoteNotification:) name:kShowRemoteNotification object:nil];
+    
     //VC跳转
     if (isPushIndex < 1) return;
     [self jumpToVC];
@@ -45,7 +48,7 @@
         
 }
 
-#pragma mark -- 页面跳转
+#pragma mark - 页面跳转
 - (void)jumpToVC{
     
     UIViewController *controller;
@@ -115,7 +118,7 @@
     
 }
 
-#pragma mark -- UINavigationControllerDelegate
+#pragma mark - UINavigationControllerDelegate
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     hyTabBar.hidden = NO;
@@ -167,6 +170,12 @@
     
 }
 
+#pragma mark - NSNotification
+- (void)showRemoteNotification:(NSNotification *)notify{
+    NSLog(@"notify:%@",[notify userInfo]);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"收到远程通知" message:[[[notify userInfo] objectForKey:@"aps"] objectForKey:@"alert"] delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@"sure", nil];
+    [alert show];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

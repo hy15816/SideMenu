@@ -45,6 +45,9 @@
 
 @end
 
+@interface GlobalTool ()
+
+@end
 @implementation GlobalTool
 
 
@@ -261,8 +264,23 @@
 
 + (void)getJSONWithUrl:(NSString *)urlStr parameters:(id)parameters success:(void (^)(id responseObject))success fail:(void (^)(NSError *err))fail{
 
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+   // manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:urlStr parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            success(responseObject);
+            
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (fail) {
+            fail(error);
+            
+        }
+    }];
     
 }
+
 
 /**
  *  POST提交json数据

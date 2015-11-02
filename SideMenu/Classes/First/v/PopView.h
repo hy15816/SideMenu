@@ -33,4 +33,11 @@
  */
 - (PopView *)initWithViewItems:(NSArray *)views frame:(CGRect)frame ;
 
+/**
+ *  显示在哪个view上
+ *
+ *  @param view view
+ */
+- (void)showPopInView:(UIView *)view;
+
 @end

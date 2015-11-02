@@ -8,6 +8,12 @@
 
 #import "PopView.h"
 
+@interface PopView ()
+
+@property (strong,nonatomic) UIView *backgroundView;
+
+@end
+
 @implementation PopView
 
 /*
@@ -28,6 +34,15 @@
 - (PopView *)initWithViewItems:(NSArray *)views frame:(CGRect)frame {
     
     self = [[PopView alloc] initWithFrame:frame];
+    
+//    self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+//    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.1];
+//    self.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCancel)];
+//    [self addGestureRecognizer:tapGesture];
+
+    
+    
     
     self.backgroundColor = [UIColor whiteColor];
     self.userInteractionEnabled = YES;
@@ -51,6 +66,15 @@
     }
     
     return self;
+}
+
+- (void)showPopInView:(UIView *)view{
+    
+    
+}
+
+- (void)tappedCancel{
+    
 }
 
 -(void)popViewButtonClick:(UIButton *)btn{

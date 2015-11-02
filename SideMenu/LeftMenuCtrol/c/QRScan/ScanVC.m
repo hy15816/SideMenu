@@ -23,6 +23,7 @@
 #import "ScanVC.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ScanResultVC.h"
+#import "SBJson.h"
 
 @interface ScanVC ()<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
 {
@@ -81,6 +82,12 @@
     bg.alpha = 0.5;
     [self.view addSubview:bg];//200x188
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //判断时间区间
+    //18:00-06:00段,自动开启灯光
 }
 
 /**
@@ -175,10 +182,15 @@
         [_capSession stopRunning];
         AVMetadataMachineReadableCodeObject *mmrcObj = [metadataObjects objectAtIndex:0];
         stringValue = mmrcObj.stringValue;
-        
+        /*
+        //使用block
+        if (_scanFinishedBlock) {
+            _scanFinishedBlock(stringValue);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+         */
         [self addview:stringValue];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(imgvAnimation) object:nil];
-//        [timer invalidate];
         NSLog(@"stringValue:%@",stringValue);
         
     }
@@ -195,19 +207,51 @@
     [shadeView addSubview:l];
     [self.view addSubview:shadeView];
     NSLog(@"string:%@",string);
-    if (string.length > 4) {
+    if (string.length > 6) {
         if ([[string substringToIndex:4] isEqualToString:@"http"]) {
             [self showMessage:string tag:kTAG_SHOW_WEBVIEW];
             l.alpha =0;
+        }else{
+            
+            if ([[string substringWithRange:NSMakeRange(2, 4)] isEqualToString:@"user"]) {
+                NSLog(@"向服务器请求授权............");
+                [self updateDevo:string];
+            }
+            
+            ScanResultVC *result = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"ScanResultVCIDF"];
+            result.showType = ShowTypeText;
+            result.urlString = string;
+            [self.navigationController pushViewController:result animated:YES];
+            l.alpha =0;
+            
         }
 
-    }else{
-        ScanResultVC *result = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"ScanResultVCIDF"];
-        result.showType = ShowTypeText;
-        result.urlString = string;
-        [self.navigationController pushViewController:result animated:YES];
-        l.alpha =0;
     }
+    
+}
+#define kDevolutionURL @"http://112.74.128.144:8189/AnerfaBackstage/devolutionLicense/devolutionLicense.do"
+
+
+-(void)updateDevo:(NSString *)string{
+
+    SBJsonParser *jsonParse = [[SBJsonParser alloc] init];
+    NSMutableDictionary *dict = [jsonParse objectWithString:string];
+    NSLog(@"dict:%@",dict);
+    NSString *strName = [dict objectForKey:@"user"];
+    NSString *strDevo = [dict objectForKey:@"devo"];
+    NSString *strCar = [dict objectForKey:@"car"];
+    NSString *strDate = [GlobalTool getCurrDateWithFormat:@"yyyyMMddHHmmss"];
+    NSLog(@"start time:%@",strDate);
+    NSString *strEndDate = @"20151024160000";
+    NSDictionary *parse = @{@"user_name":strName,@"other_user_name":@"18296174025",@"license_plate_number":strCar,@"start_time":strDate ,@"end_time":strEndDate,@"devolutionCode":strDevo};
+    [GlobalTool postJSONWithUrl:kDevolutionURL parameters:parse success:^(NSDictionary *accept){
+        NSLog(@"ScanVC.m, accept data:%@",accept);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([[accept objectForKey:@"code"] intValue] == 43000) {
+                [SVProgressHUD showSuccessWithStatus:@"授权成功"];
+            }
+        });
+    } fail:^(NSError *err){}];
     
 }
 
