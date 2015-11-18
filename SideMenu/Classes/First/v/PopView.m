@@ -52,7 +52,7 @@
         button.backgroundColor = [UIColor clearColor];
         [button setTitle:[views objectAtIndex:i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        button.tag = 10000+i;
+        button.tag = i;
         [button addTarget:self action:@selector(popViewButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         //lebel 线条
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMaxY(button.frame), frame.size.width-10, .5)];

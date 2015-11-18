@@ -1,0 +1,81 @@
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "0AC-ti-S4g"; */
+"0AC-ti-S4g.headerTitle" = " ";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "2Rk-jR-YG3"; */
+"2Rk-jR-YG3.headerTitle" = " ";
+
+/* Class = "UIButton"; normalTitle = "提交"; ObjectID = "6zv-v1-M4Z"; */
+"6zv-v1-M4Z.normalTitle" = "提交";
+
+/* Class = "UINavigationItem"; title = "testKeyboard"; ObjectID = "9Xs-yy-lmH"; */
+"9Xs-yy-lmH.title" = "testKeyboard";
+
+/* Class = "UINavigationItem"; title = "设置"; ObjectID = "AZ2-cV-NaX"; */
+"AZ2-cV-NaX.title" = "设置";
+
+/* Class = "UINavigationItem"; title = "账号安全"; ObjectID = "CPR-q5-7sg"; */
+"CPR-q5-7sg.title" = "账号安全";
+
+/* Class = "UILabel"; text = "120/120"; ObjectID = "Ext-3F-59H"; */
+"Ext-3F-59H.text" = "120/120";
+
+/* Class = "UILabel"; text = "账号安全"; ObjectID = "FCZ-Hx-q22"; */
+"FCZ-Hx-q22.text" = "账号安全";
+
+/* Class = "UINavigationItem"; title = "反馈意见"; ObjectID = "Fb4-9z-ufl"; */
+"Fb4-9z-ufl.title" = "反馈意见";
+
+/* Class = "UILabel"; text = "辅助功能"; ObjectID = "Ij2-Nl-7oT"; */
+"Ij2-Nl-7oT.text" = "辅助功能";
+
+/* Class = "UILabel"; text = "关于我们"; ObjectID = "JaT-TQ-4Fg"; */
+"JaT-TQ-4Fg.text" = "关于我们";
+
+/* Class = "UILabel"; text = "138****0000"; ObjectID = "Jcb-Ck-fUq"; */
+"Jcb-Ck-fUq.text" = "138****0000";
+
+/* Class = "UILabel"; text = "反馈意见"; ObjectID = "NS5-O6-iNi"; */
+"NS5-O6-iNi.text" = "反馈意见";
+
+/* Class = "UIButton"; normalTitle = "继续"; ObjectID = "VcB-T3-6iy"; */
+"VcB-T3-6iy.normalTitle" = "继续";
+
+/* Class = "UILabel"; text = "版本更新"; ObjectID = "Wds-wL-9dC"; */
+"Wds-wL-9dC.text" = "版本更新";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "b2d-ZA-0dY"; */
+"b2d-ZA-0dY.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "退出当前账号"; ObjectID = "dpc-MU-FkE"; */
+"dpc-MU-FkE.text" = "退出当前账号";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "gK9-NN-Xlw"; */
+"gK9-NN-Xlw.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "version_num"; ObjectID = "gRm-Kp-4Fu"; */
+"gRm-Kp-4Fu.text" = "version_num";
+
+/* Class = "UINavigationItem"; title = "辅助功能"; ObjectID = "gq8-D6-HZ3"; */
+"gq8-D6-HZ3.title" = "辅助功能";
+
+/* Class = "UINavigationItem"; title = "关于我们"; ObjectID = "i34-zB-bFR"; */
+"i34-zB-bFR.title" = "关于我们";
+
+/* Class = "UILabel"; text = "手机号码"; ObjectID = "m6D-cl-xdn"; */
+"m6D-cl-xdn.text" = "手机号码";
+
+/* Class = "UILabel"; text = "账号管理"; ObjectID = "mch-yq-nWB"; */
+"mch-yq-nWB.text" = "账号管理";
+
+/* Class = "UIButton"; normalTitle = "暂停"; ObjectID = "mt6-KB-FOH"; */
+"mt6-KB-FOH.normalTitle" = "暂停";
+
+/* Class = "UINavigationItem"; title = "showImg"; ObjectID = "xYh-oT-WRu"; */
+"xYh-oT-WRu.title" = "showImg";
+
+/* Class = "UILabel"; text = "tips：测试是否实现 键盘弹出，textField自动改变位置；是否实现点击前一项、后一项等功能。"; ObjectID = "yii-2F-qH4"; */
+"yii-2F-qH4.text" = "tips：测试是否实现 键盘弹出，textField自动改变位置；是否实现点击前一项、后一项等功能。";
+
+/* Class = "UIButton"; normalTitle = "开始"; ObjectID = "zUk-fu-mtN"; */
+"zUk-fu-mtN.normalTitle" = "开始";

@@ -113,6 +113,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"startNotificationName" object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

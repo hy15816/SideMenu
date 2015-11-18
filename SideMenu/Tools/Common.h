@@ -24,6 +24,11 @@
 
 /** value 0xFFFFFF*/
 #define kCOLORVALUE(value,a) [UIColor colorWithRed:((value & 0xFF0000) >> 16)/255.f green:((value & 0xFF00) >> 8)/255.f blue:(value & 0xFF)/255.0 alpha:a]
+/**
+ *  随机颜色
+ */
+#define kCOLORRANDOM [UIColor colorWithRed:(arc4random() % 255)/255.f green:(arc4random() % 255)/255.f blue:(arc4random() % 255)/255.f alpha:1];
+
 
 //==================地址=======================
 #define kGetURLImage    @"http://img5.imgtn.bdimg.com/it/u=3279029117,1242220858&fm=21&gp=0.jpg"       //图片网址
@@ -36,6 +41,7 @@
 #define kLOGINSTATE  @"loginState"   //登录状态
 #define kUSERNAME    @"user_name"    //用户名
 #define kUSERPWD     @"password"     //密码
+#define kISPLAYERMUSIC @"isPlayeringMusicName"  //正在播放的歌曲
 
 #define kTAG_USER_ICON  20  //头像
 #define kTAG_USER_NAME  21  //用户名
@@ -43,6 +49,8 @@
 
 
 #define kShowRemoteNotification @"kShowRemoteNotification"  //推送通知
+#define kMyIconDidChanged       @"kmyIconDidChanged"        //头像已改变通知
+#define kMyHeadPortraitName @"my_icon_image"        //我的头像
 
 
 

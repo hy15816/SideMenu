@@ -22,9 +22,20 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>若不允许定位，您将不能使用应用的一部分功能，这里的提示文字将显示在提示框中，也会显示在手机的-设置-隐私-定位服务-App-描述，中看到</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>需要定位when use</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
 		<string>remote-notification</string>
+		<string>voip</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

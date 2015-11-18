@@ -15,6 +15,11 @@
 #import "MusicListCell.h"
 #import "MusicRecord.h"
 #import "GuideView.h"
+#import "TestCellTableVC.h"
+
+#import <ifaddrs.h>
+#import <arpa/inet.h>
+
 #define bCarLoginURL @"http://112.74.128.144:8189/AnerfaBackstage/login/login.do"//登陆
 
 @interface FirstVC ()<UITableViewDataSource,UITableViewDelegate,PopViewDelegate>
@@ -51,7 +56,7 @@
     //右上角item
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightsBtnClick:)];
     
-    
+    //[self checkMyversion];
     [self initSubViews];
     /*
     NSDictionary *d = @{@"key":@"18565667965",@"password":@"3333"};
@@ -60,6 +65,8 @@
     } fail:^(NSError *error){}];
     */
     
+    [self deviceIPAdress];
+    [self getIpAddresses];
 }
 
 #pragma mark - 添加显示引导页面
@@ -74,6 +81,95 @@
         [kUSERDFS setValue:@"1" forKey:kFirstLaunch];
         
     }
+}
+/**
+ *  获取设备网络ip地址,需引入<ifaddrs.h>,<arpa/inet.h>
+ *
+ *  @return string ip地址
+ */
+- (NSString *)deviceIPAdress {
+    NSString *address = @"an error occurred when obtaining ip address";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    
+    success = getifaddrs(&interfaces);
+    
+    if (success == 0) { // 0 表示获取成功
+        
+        temp_addr = interfaces;
+        while (temp_addr != NULL) {
+            if( temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    
+    freeifaddrs(interfaces);  
+    
+    NSLog(@"手机的IP是：%@", address);
+    return address;  
+}
+
+
+/**
+ *  遍历所有ipv4网卡，查询网卡名称是否包含“bridge”即可判断当前热点是否启动。,。
+ *  lo0:        本地ip(127.0.0.1)
+ *  en0:        局域网/广域网ip(192.168.1.10)
+ *  pdp_ip0:    WWAN地址，即3G ip(10.225.52.253)
+ *  bridge0:    桥接、热点ip(172.20.10.1)
+ */
+
+// Get All ipv4 interface
+- (void)getIpAddresses {
+    //NSMutableDictionary* addresses = [[NSMutableDictionary alloc] init];
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    
+    @try {
+        // retrieve the current interfaces - returns 0 on success
+        NSInteger success = getifaddrs(&interfaces);
+        //NSLog(@"%@, success=%d", NSStringFromSelector(_cmd), success);
+        if (success == 0) {
+            // Loop through linked list of interfaces
+            temp_addr = interfaces;
+            while(temp_addr != NULL) {
+                if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                    // Get NSString from C String
+                    NSString* ifaName = [NSString stringWithUTF8String:temp_addr->ifa_name];
+                    NSString* address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *) temp_addr->ifa_addr)->sin_addr)];
+                    NSString* mask = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *) temp_addr->ifa_netmask)->sin_addr)];
+                    NSString* gateway = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *) temp_addr->ifa_dstaddr)->sin_addr)];
+                    
+                    /*
+                    AXNetAddress* netAddress = [[AXNetAddress alloc] init];
+                    netAddress.name = ifaName;
+                    netAddress.address = address;
+                    netAddress.netmask = mask;
+                    netAddress.gateway = gateway;
+                    NSLog(@"netAddress=%@", netAddress);
+                    addresses[ifaName] = netAddress;
+                     */
+                    NSLog(@" ifaName---%@, address---%@, mask---%@, gateway---%@ \n",ifaName,address,mask,gateway);
+                }
+                temp_addr = temp_addr->ifa_next;
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"aaaaaaaaaaaaaaaa Exception: %@", exception);
+    }
+    @finally {
+        // Free memory
+        freeifaddrs(interfaces);
+    }
+    //return addresses;
 }
 
 
@@ -137,16 +233,26 @@
 
 #pragma mark - PopViewDelegate
 -(void)popViewItemClick:(UIButton *)btn{
+    
     NSLog(@"btn.tag %lu",btn.tag);
     [self dismissRightView];
-    UIViewController *ctrol = [[UIViewController alloc] init];
-    ctrol.title = btn.titleLabel.text;
-    ctrol.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:ctrol animated:YES];
+    
+    if (btn.tag == 3) {
+        TestCellTableVC *test = [kMainStoryboard instantiateViewControllerWithIdentifier:@"TestCellTableVCIDF"];
+        [self.navigationController pushViewController:test animated:YES];
+    }else{
+        UIViewController *ctrol = [[UIViewController alloc] init];
+        ctrol.title = btn.titleLabel.text;
+        ctrol.view.backgroundColor = [UIColor whiteColor];
+        [self.navigationController pushViewController:ctrol animated:YES];
+    }
+    
+    
 }
 
 #pragma mark - tap
 -(void)tapShadowView:(UITapGestureRecognizer *)tap{
+    
     if (tap.state == UIGestureRecognizerStateEnded) {
         [self dismissRightView];
     }
@@ -245,7 +351,34 @@
     
     [self dismissRightView];
 }
+-  (void)checkMyversion{
+    
+    //获取本地版本
+    NSString  *localVersionString =  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    localVersionString = [localVersionString stringByReplacingOccurrencesOfString:@"." withString:@""];
+    int localVersion = [localVersionString intValue];
+    NSLog(@"localVersion:%d",localVersion);
+    [GlobalTool postJSONWithUrl:@"http://112.74.128.144:8189/AnerfaBackstage/versionCode/findVersionCode.do" parameters:@{@"":@""} success:^(NSArray *acceptData){
+        NSLog(@"acceptData:%@",acceptData);
+        NSString *serviceVersionString = [[acceptData objectAtIndex:0] objectForKey:@"iphoneDownloadurl"];
+        serviceVersionString = [serviceVersionString stringByReplacingOccurrencesOfString:@"." withString:@""];
+        
+        if (localVersion == [serviceVersionString intValue]) {
+            //
+            NSLog(@"已经是最新版本");
+            //[AlertView showMessage:@"已经是最新版本" time:1.];
+        }
+        if (localVersion < [serviceVersionString intValue]) {
+            //
+            NSLog(@"提示更新");
+        }
+    } fail:^(NSError *error){
+        
+    }];
+    
+}
 
+//
 //收回弹窗
 - (void)dismissRightView{
     //若是_rightView在弹出状态，则收回

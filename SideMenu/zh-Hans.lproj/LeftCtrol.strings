@@ -1,0 +1,108 @@
+
+/* Class = "UIBarButtonItem"; title = "返回首页"; ObjectID = "0EJ-3Y-Z5V"; */
+"0EJ-3Y-Z5V.title" = "返回首页";
+
+/* Class = "UIButton"; normalTitle = "分享"; ObjectID = "4SJ-JB-8HP"; */
+"4SJ-JB-8HP.normalTitle" = "分享";
+
+/* Class = "UIBarButtonItem"; title = "生成"; ObjectID = "5Th-ox-rPy"; */
+"5Th-ox-rPy.title" = "生成";
+
+/* Class = "UILabel"; text = "user_name"; ObjectID = "6MQ-hv-jeS"; */
+"6MQ-hv-jeS.text" = "user_name";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6uY-jS-g6D"; */
+"6uY-jS-g6D.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "我的资料"; ObjectID = "7z5-hm-IXu"; */
+"7z5-hm-IXu.title" = "我的资料";
+
+/* Class = "UILabel"; text = "这是一条说说"; ObjectID = "8fh-Tl-1Ub"; */
+"8fh-Tl-1Ub.text" = "这是一条说说";
+
+/* Class = "UIButton"; normalTitle = "赞"; ObjectID = "93E-Ae-5jr"; */
+"93E-Ae-5jr.normalTitle" = "赞";
+
+/* Class = "UILabel"; text = "签名"; ObjectID = "DN0-NI-rwe"; */
+"DN0-NI-rwe.text" = "签名";
+
+/* Class = "UILabel"; text = "男"; ObjectID = "FNR-V2-78o"; */
+"FNR-V2-78o.text" = "男";
+
+/* Class = "UILabel"; text = "2222"; ObjectID = "IY4-dn-tS6"; */
+"IY4-dn-tS6.text" = "2222";
+
+/* Class = "UIButton"; normalTitle = "📱iPhone"; ObjectID = "IeP-3N-A6o"; */
+"IeP-3N-A6o.normalTitle" = "📱iPhone";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "KAF-wG-F6d"; */
+"KAF-wG-F6d.title" = "保存";
+
+/* Class = "UILabel"; text = "1111"; ObjectID = "M4j-Ni-Dy1"; */
+"M4j-Ni-Dy1.text" = "1111";
+
+/* Class = "UILabel"; text = "账号"; ObjectID = "Oka-IN-LYe"; */
+"Oka-IN-LYe.text" = "账号";
+
+/* Class = "UILabel"; text = "时间:今天16:30"; ObjectID = "PKU-pn-JIV"; */
+"PKU-pn-JIV.text" = "时间:今天16:30";
+
+/* Class = "UINavigationItem"; title = "我的动态"; ObjectID = "Reh-gt-ddm"; */
+"Reh-gt-ddm.title" = "我的动态";
+
+/* Class = "UILabel"; text = "上传到某某相册"; ObjectID = "ZIt-Fq-gqT"; */
+"ZIt-Fq-gqT.text" = "上传到某某相册";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "ZXU-m4-dx3"; */
+"ZXU-m4-dx3.text" = "昵称";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dI3-iL-TL2"; */
+"dI3-iL-TL2.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "扫一扫"; ObjectID = "g6W-ka-EwN"; */
+"g6W-ka-EwN.text" = "扫一扫";
+
+/* Class = "UIButton"; normalTitle = "评论"; ObjectID = "gE6-kU-emE"; */
+"gE6-kU-emE.normalTitle" = "评论";
+
+/* Class = "UIButton"; normalTitle = "开灯"; ObjectID = "gjg-zM-qbl"; */
+"gjg-zM-qbl.normalTitle" = "开灯";
+
+/* Class = "UILabel"; text = "1234567890"; ObjectID = "iKa-Kg-7Vn"; */
+"iKa-Kg-7Vn.text" = "1234567890";
+
+/* Class = "UITextField"; placeholder = "填写签名"; ObjectID = "jNJ-Mo-SJQ"; */
+"jNJ-Mo-SJQ.placeholder" = "填写签名";
+
+/* Class = "UILabel"; text = "     A，b，微笑，美好的阳光，隐形的翅膀，这里显示点击了赞的好友，或者非好友"; ObjectID = "l77-eV-k7y"; */
+"l77-eV-k7y.text" = "     A，b，微笑，美好的阳光，隐形的翅膀，这里显示点击了赞的好友，或者非好友";
+
+/* Class = "UILabel"; text = "性别"; ObjectID = "ljT-VC-YHT"; */
+"ljT-VC-YHT.text" = "性别";
+
+/* Class = "UIButton"; normalTitle = "B"; ObjectID = "n7V-2y-ytV"; */
+"n7V-2y-ytV.normalTitle" = "B";
+
+/* Class = "UILabel"; text = "生日"; ObjectID = "noW-K6-kQU"; */
+"noW-K6-kQU.text" = "生日";
+
+/* Class = "UINavigationItem"; title = "扫一扫"; ObjectID = "nrE-Tc-rme"; */
+"nrE-Tc-rme.title" = "扫一扫";
+
+/* Class = "UINavigationItem"; title = "result"; ObjectID = "qJK-vt-jPo"; */
+"qJK-vt-jPo.title" = "result";
+
+/* Class = "UILabel"; text = "usdh,空间背景音乐名称"; ObjectID = "qla-xn-nEI"; */
+"qla-xn-nEI.text" = "usdh,空间背景音乐名称";
+
+/* Class = "UINavigationItem"; title = "我的二维码"; ObjectID = "rIy-Ss-ZRP"; */
+"rIy-Ss-ZRP.title" = "我的二维码";
+
+/* Class = "UILabel"; text = "1993-8-23"; ObjectID = "v34-mM-zlm"; */
+"v34-mM-zlm.text" = "1993-8-23";
+
+/* Class = "UIButton"; normalTitle = "浏览999次"; ObjectID = "yrG-R6-NJt"; */
+"yrG-R6-NJt.normalTitle" = "浏览999次";
+
+/* Class = "UITextField"; placeholder = "修改昵称"; ObjectID = "zOm-3a-Jfy"; */
+"zOm-3a-Jfy.placeholder" = "修改昵称";

@@ -15,6 +15,11 @@
 #import "ThirdVC.h"
 #import "HYNavVC.h"
 #import "SettingsVC.h"
+#import "MyDynamicTableVc.h"
+#import "ShowImagesTableVC.h"
+#import "TestCircleVC.h"
+#import "CheckMulitPictureVC.h"
+#import "LocationVC.h"
 
 @interface RootViewController ()<UINavigationControllerDelegate>
 {
@@ -28,21 +33,27 @@
 @end
 
 @implementation RootViewController
-@synthesize isPushIndex;
+@synthesize isPushIndex,isShowSecondVC;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    //接收显示通知
+    //接收显示推送通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRemoteNotification:) name:kShowRemoteNotification object:nil];
     
     //VC跳转
     if (isPushIndex < 1) return;
-    [self jumpToVC];
+    if (isShowSecondVC) {
+        isShowSecondVC = NO;
+        [self jumpToVC];
+        
+    }
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //isShowSecondVC = NO;
     [self addChildControllers];
     [self addTabBarItem];
         
@@ -54,23 +65,37 @@
     UIViewController *controller;
     switch (isPushIndex) {
         case 1:
-            controller = [[UIViewController alloc] init];
-            controller.view.backgroundColor = [UIColor yellowColor];
-            controller.title = @"first";
+            //动态
+            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"MyDynamicTableVcIDF"];;
+            controller.title = @"Dynamic";
             break;
         case 2:
+            //二维码
             controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"QRCodeVCIDF"];
             break;
         case 3:
-            controller = [[UIViewController alloc] init];
-            controller.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-            controller.title = @"third";
+            //show 图片
+            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"ShowImagesTableVCIDF"];
             break;
         case 4:
+            //设置
             controller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"SettingsVCIDF"];
             break;
+        case 5:
+            //测试圆环进度条
+            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"TestCircleVCIDF"];
+            break;
+        case 6:
+            //在相册中多选照片
+            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"CheckMulitPictureVCIDF"];
+            break;
+        case 7:
+            //测试定位
+            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"LocationVCIDF"];//
+            break;
         case kTAG_USER_ICON:
-            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"UserInfoEditIDF"];
+            //个人信息
+            controller = [kLeftStoryboard instantiateViewControllerWithIdentifier:@"UserInfoEditVCIDF"];
             break;
         default:
             break;

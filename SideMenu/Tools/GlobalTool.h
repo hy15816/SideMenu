@@ -132,6 +132,7 @@ typedef void (^httpRequestBlock)(id getData);
  */
 -(UIScrollView *)createSCView:(CGRect)frame :(CGSize)contentSize :(UIView *)superView;
 
+#pragma mark - 时间...格式 & 时间戳 & 以1970距今时长等
 /**
  *  时间String转date
  *
@@ -161,7 +162,25 @@ typedef void (^httpRequestBlock)(id getData);
  */
 +(NSString *)getCurrDateWithFormat:(NSString *)format;
 
-#pragma mark -- 网络请求
+/**
+ *  时间（毫秒格式） 1970年~任意时间之间的秒数 *1000
+ *
+ *  @param dateString  时间字符串 exp:20151111085000,代表2015-11-11 08:50:00
+ *
+ *  @return string
+ */
++ (NSString *)intervalSinceNowWithString:(NSString *)dateString;
+
+/**
+ *  时间（毫秒格式）1970年~任意时间之间的秒数 *1000
+ *
+ *  @param date NSDate ,exp:[NSDate date]
+ *
+ *  @return string
+ */
++ (NSString *)intervalSinceNowWithDate:(NSDate *)date;
+
+#pragma mark - 网络请求
 
 /**
  *  GET 提交json数据
@@ -214,18 +233,19 @@ typedef void (^httpRequestBlock)(id getData);
 + (void)postUploadWithUrl:(NSString *)urlStr fileUrl:(NSURL *)fileURL fileName:(NSString *)fileName fileType:(NSString *)fileTye success:(void (^)(id responseObject))success fail:(void (^)())fail;
 
 /**
- *  判断是否登录状态
- *
- *  @return YES是,NO否
- */
-+(BOOL)isLogin;
-
-/**
  *  判断错误码
  *
  *  @param code 错误码
  */
 +(void)errorWithCode:(int)code;
+
+#pragma mark - 保存到本地
+/**
+ *  判断是否登录状态
+ *
+ *  @return YES是,NO否
+ */
++(BOOL)isLogin;
 
 /**
  *  退出登录
@@ -295,7 +315,20 @@ typedef void (^httpRequestBlock)(id getData);
  */
 +(NSDictionary *)dictionaryFromJsonData:(NSData *)jsonData;
 
+/**
+ *  将选取的头像图片保存到本地,
+ *
+ *  @param image 选取的 image
+ *  @param err   若发生错误，返回错误
+ */
++ (void)saveMyIcon:(UIImage *)image finish:(void (^)(NSError *err))err;
 
+/**
+ *  获取我的头像-image,没有则放置默认图片user_icon
+ *
+ *  @return image
+ */
++ (UIImage *)getMyIcon;
 
 @end
 

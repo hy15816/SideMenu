@@ -8,6 +8,7 @@
 
 #import "ThirdVC.h"
 #import "ImageShowVC.h"
+#import <LocalAuthentication/LocalAuthentication.h>
 
 @interface ThirdVC ()
 
@@ -24,19 +25,94 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"goto"] style:UIBarButtonItemStylePlain target:self action:@selector(thirdRightsBtnClick:)];
     
     //背景图片
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-49-64)];
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-64-49+10);
-    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     //imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     imageView.image = [UIImage imageNamed:@"image_leftImg"];
-    [scrollView addSubview:imageView];
-    [self.view addSubview:scrollView];
+    imageView.alpha = 1;
+    [self.view addSubview:imageView];
 
-    
+    [self authenticateUser];
 }
+
+- (void)authenticateUser
+{
+    //初始化上下文对象
+    LAContext* context = [[LAContext alloc] init];
+    //错误对象
+    NSError* error = nil;
+    NSString* result = @"Authentication is needed to access your notes.";
+    
+    //首先使用canEvaluatePolicy 判断设备支持状态
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+        //支持指纹验证
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:result reply:^(BOOL success, NSError *error) {
+            if (success) {
+                //验证成功，主线程处理UI
+                NSLog(@"指纹验证成功");
+            }
+            else
+            {
+                NSLog(@"%@",error.localizedDescription);
+                switch (error.code) {
+                    case LAErrorSystemCancel:
+                    {
+                        NSLog(@"Authentication was cancelled by the system");
+                        //切换到其他APP，系统取消验证Touch ID
+                        break;
+                    }
+                    case LAErrorUserCancel:
+                    {
+                        NSLog(@"Authentication was cancelled by the user");
+                        //用户取消验证Touch ID
+                        break;
+                    }
+                    case LAErrorUserFallback:
+                    {
+                        NSLog(@"User selected to enter custom password");
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            //用户选择输入密码，切换主线程处理
+                        }];
+                        break;
+                    }
+                    default:
+                    {
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            //其他情况，切换主线程处理
+                        }];
+                        break;
+                    }
+                }
+            }
+        }];
+    }
+    else
+    {
+        //不支持指纹识别，LOG出错误详情
+        
+        switch (error.code) {
+            case LAErrorTouchIDNotEnrolled:
+            {
+                NSLog(@"TouchID is not enrolled");
+                break;
+            }
+            case LAErrorPasscodeNotSet:
+            {
+                NSLog(@"A passcode has not been set");
+                break;
+            }
+            default:
+            {
+                NSLog(@"TouchID not available");
+                break;
+            }
+        }
+        
+        NSLog(@"%@",error.localizedDescription);
+        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+    }
+}
+
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

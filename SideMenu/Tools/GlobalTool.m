@@ -9,6 +9,8 @@
 #import "GlobalTool.h"
 #import <QuartzCore/QuartzCore.h>
 
+//=======================NSDictionary====================================
+
 @implementation NSDictionary (DictionaryHelper)
 
 - (NSString*) stringForKey:(id)key {
@@ -44,7 +46,7 @@
 }
 
 @end
-
+//=======================GlobalTool====================================
 @interface GlobalTool ()
 
 @end
@@ -71,8 +73,8 @@
 
 
 
-#pragma mark 创建控件
-//========================================================
+#pragma mark  - 创建控件
+
 -(UIButton *)creatButton:(CGRect)frame title:(NSString*)title image:(NSString*)image :(UIView *)superView{
     UIButton *detBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     detBtn.frame=frame;
@@ -206,6 +208,39 @@
     return dataString;
 }
 
+/**
+ *  时间（毫秒格式） 1970年~任意时间之间的秒数 *1000
+ *
+ *  @param dateString  时间字符串 exp:20151111085000,代表2015-11-11 08:50:00
+ *
+ *  @return string
+ */
++ (NSString *)intervalSinceNowWithString:(NSString *)dateString {
+    
+    NSDateFormatter *date=[[NSDateFormatter alloc] init];
+    [date setDateFormat:@"yyyyMMddHHmmss"];
+    NSDate *d=[date dateFromString:dateString];
+    NSTimeInterval late=[d timeIntervalSince1970]*1000;
+    NSLog(@"date start:%.f",late);
+    
+    return [NSString stringWithFormat:@"%0.f",late];
+}
+
+/**
+ *  时间（毫秒格式）1970年~任意时间之间的秒数 *1000
+ *
+ *  @param date NSDate ,exp:[NSDate date]
+ *
+ *  @return string
+ */
++ (NSString *)intervalSinceNowWithDate:(NSDate *)date {
+    
+    //    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval now =[date timeIntervalSince1970]*1000;
+    NSLog(@"date stop:%f",now);
+    
+    return [NSString stringWithFormat:@"%0.f",now];
+}
 
 -(NSString *)getPath{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -249,6 +284,7 @@
 
 
 -(void)saveItems:(NSDictionary*)dic{
+    
     NSMutableDictionary*temp=[dic mutableCopy];
     [temp setObject:[NSString stringWithFormat:@"%d",self.type] forKey:@"type"];
     NSMutableArray *arr=[NSMutableArray arrayWithContentsOfFile:[self getPath]];
@@ -260,7 +296,7 @@
 }
 
 
-#pragma mark -- 网络请求
+#pragma mark - 网络请求
 
 + (void)getJSONWithUrl:(NSString *)urlStr parameters:(id)parameters success:(void (^)(id responseObject))success fail:(void (^)(NSError *err))fail{
 
@@ -675,5 +711,39 @@
     return responseJSON;
 }
 
++ (void)saveMyIcon:(UIImage *)image finish:(void (^)(NSError *err))err{
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:kMyHeadPortraitName];
+    //NSLog(@"imageFile->>%@",imageFilePath);
+    success = [fileManager fileExistsAtPath:imageFilePath];
+    if(success) {
+        success = [fileManager removeItemAtPath:imageFilePath error:&error];
+    }
+    //UIImage *smallImage = [self thumbnailWithImageWithoutScale:image size:CGSizeMake(93, 93)];
+    success =  [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFilePath atomically:YES];//写入文件
+    if (!success) {
+        
+        if (err) {
+            err(error);
+        }
+        
+    }
+}
+
++ (UIImage *)getMyIcon{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:kMyHeadPortraitName];
+    //NSLog(@"imageFile->>%@",imageFilePath);
+    UIImage *image = [UIImage imageWithContentsOfFile:imageFilePath];
+    
+    return image!=nil?image:[UIImage imageNamed:@"user_icon"];
+}
 
 @end
